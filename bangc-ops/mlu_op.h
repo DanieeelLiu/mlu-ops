@@ -2312,7 +2312,8 @@ mluOpPsRoiPoolBackward(mluOpHandle_t handle,
  * @param[in] rois
  * Pointer to the MLU memory that stores rois tensors. \b rois[i] consists of [batch_id,
  * x, y, w, h, theta], where \p batch_id is the ID of the batch, \p x and \p y are the coordinate
- * of center point, \p w and \p h are the width and height of rois, and \p theta is the rotated angle.
+ * of center point, \p w and \p h are the width and height of rois, and \p theta is the rotated
+ angle.
  * @param[in] pooled_height
  * The height of output.
  * @param[in] pooled_width
@@ -2355,15 +2356,19 @@ mluOpPsRoiPoolBackward(mluOpHandle_t handle,
  * - The \b rois tensor should be 2D array.
  * - Size of the highest dimension of \b output tensor and \b rois tensor should be the same.
  * - The shape of \b rois should be [rois_num, 6].
- * - \p batch_id should be in the range of [0, \p batch_num - 1]; \p x and \p y should be greater than or
- *   equal to 0 and less than \p H and \p W respectively. Both of \p h and \p w should be greater than zero
+ * - \p batch_id should be in the range of [0, \p batch_num - 1]; \p x and \p y should be greater
+ than or
+ *   equal to 0 and less than \p H and \p W respectively. Both of \p h and \p w should be greater
+ than zero
  *   and less than \p H and \p W respectively.
  * - \p spatial_scale and \p sample_ratio should not be less than zero.
  *
  * @note
- * - NaN and infinity are not supported for all parameters in \b boxes, except for the \p x and \p y parameters
+ * - NaN and infinity are not supported for all parameters in \b boxes, except for the \p x and \p y
+ parameters
  *   that support infinity.
- * - The values of the parameters \p x , \p y, \p w and \p h in \b rois multiplied by \p spatial_scale cannot exceed
+ * - The values of the parameters \p x , \p y, \p w and \p h in \b rois multiplied by \p
+ spatial_scale cannot exceed
  *   the range that can be represented by the parameter type.
  *
  * @par Requirements
@@ -2372,7 +2377,8 @@ mluOpPsRoiPoolBackward(mluOpHandle_t handle,
  * @par Example
  * - The example of the roi_align_rotated_forward operation is as follows:
      @verbatim
-     input two arrays by 1 * 3 * 3 * 1 and 1 * 6 --> input: [[[[1.0],[1.0],[1.0]],[[1.0],[1.0],[1.0]],[[1.0],[1.0],[1.0]]]]
+     input two arrays by 1 * 3 * 3 * 1 and 1 * 6 --> input:
+ [[[[1.0],[1.0],[1.0]],[[1.0],[1.0],[1.0]],[[1.0],[1.0],[1.0]]]]
 
      --> rois: [[0.0, 1.0, 1.0, 1.0, 1.0, 0.0]]
 
@@ -2390,9 +2396,9 @@ mluOpPsRoiPoolBackward(mluOpHandle_t handle,
 mluOpStatus_t MLUOP_WIN_API
 mluOpRoiAlignRotatedForward(mluOpHandle_t handle,
                             const mluOpTensorDescriptor_t features_desc,
-                            const void* features,
+                            const void *features,
                             const mluOpTensorDescriptor_t rois_desc,
-                            const void* rois,
+                            const void *rois,
                             const int pooled_height,
                             const int pooled_width,
                             const int sample_ratio,
@@ -2400,7 +2406,7 @@ mluOpRoiAlignRotatedForward(mluOpHandle_t handle,
                             const bool aligned,
                             const bool clockwise,
                             const mluOpTensorDescriptor_t output_desc,
-                            void* output);
+                            void *output);
 
 // Group:RoiAlignRotated
 /*!
@@ -2461,18 +2467,23 @@ mluOpRoiAlignRotatedForward(mluOpHandle_t handle,
  * @par Scale Limitation
  * - The \b bottom_grad tensor and \b top_grad tensor should be 4D.
  * - The half data type is not recommended due to low precision.
- * - Size of the lowest dimension of \b bottom_grad tensor and \b top_grad tensor should be the same.
+ * - Size of the lowest dimension of \b bottom_grad tensor and \b top_grad tensor should be the
+ same.
  * - The \b rois tensor should be 2D array.
  * - Size of the highest dimension of \b top_grad tensor and \b rois tensor should be the same.
- * - \p batch_id should be in the range of [0, \p batch_num - 1], \p x and \p y should be greater than or
- *   equal to 0 and less than \p H and \p W respectively. Both of \p h and \p w should be greater than zero
+ * - \p batch_id should be in the range of [0, \p batch_num - 1], \p x and \p y should be greater
+ than or
+ *   equal to 0 and less than \p H and \p W respectively. Both of \p h and \p w should be greater
+ than zero
  *   and less than \p H and \p W respectively.
  * - \p spatial_scale and \p sample_ratio should not be less than zero.
  *
  * @note
- * - NaN and infinity are not supported for all parameters in \b boxes, except for the \p x and \p y parameters
+ * - NaN and infinity are not supported for all parameters in \b boxes, except for the \p x and \p y
+ parameters
  *   that support infinity.
- * - The values of the parameters \p x , \p y, \p w and \p h in \b rois multiplied by \p spatial_scale cannot exceed
+ * - The values of the parameters \p x , \p y, \p w and \p h in \b rois multiplied by \p
+ spatial_scale cannot exceed
  *   the range that can be represented by the parameter type.
  *
  * @par Requirements
@@ -2499,9 +2510,9 @@ mluOpRoiAlignRotatedForward(mluOpHandle_t handle,
 mluOpStatus_t MLUOP_WIN_API
 mluOpRoiAlignRotatedBackward(mluOpHandle_t handle,
                              const mluOpTensorDescriptor_t top_grad_desc,
-                             const void* top_grad,
+                             const void *top_grad,
                              const mluOpTensorDescriptor_t rois_desc,
-                             const void* rois,
+                             const void *rois,
                              const int pooled_height,
                              const int pooled_width,
                              const int sample_ratio,
@@ -2509,7 +2520,7 @@ mluOpRoiAlignRotatedBackward(mluOpHandle_t handle,
                              const bool aligned,
                              const bool clockwise,
                              const mluOpTensorDescriptor_t bottom_grad_desc,
-                             void* bottom_grad);
+                             void *bottom_grad);
 
 // Group:RoiCrop
 /*!
@@ -2676,7 +2687,8 @@ mluOpRoiCropBackward(mluOpHandle_t handle,
  * @param[in] spatial_scale
  * A float value that is the scale factor of coordinates of bboxes.
  * @param[in] points
- * An int value that is the number of sample points. Only 1 and 5 are supported. The default value is 1.
+ * An int value that is the number of sample points. Only 1 and 5 are supported. The default value
+ is 1.
  * @param[in] output_desc
  * The descriptor of output tensor, which contains the dimension and layout of output tensor.
  * @param[out] output
@@ -2766,9 +2778,11 @@ mluOpRotatedFeatureAlignForward(const mluOpHandle_t handle_,
  * @param[in] spatial_scale
  * A float value that is the scale factor of coordinates of bboxes.
  * @param[in] points
- * An int value that is the number of sample points. Only 1 and 5 are supported. The default value is 1.
+ * An int value that is the number of sample points. Only 1 and 5 are supported. The default value
+ * is 1.
  * @param[in] bottom_input_desc
- * The descriptor of bottom_input tensor, which contains the dimension and layout of bottom_input tensor.
+ * The descriptor of bottom_input tensor, which contains the dimension and layout of bottom_input
+ * tensor.
  * @param[out] bottom_input
  * Pointer to the MLU memory that stores the bottom_input tensor.
  *
@@ -2986,15 +3000,20 @@ mluOpSqrtBackward(mluOpHandle_t handle,
  *    ::MLUOP_STATUS_NOT_SUPPORTED.
  */
 
-mluOpStatus_t MLUOP_WIN_API mluOpGetVoxelizationWorkspaceSize(
-    mluOpHandle_t handle, const mluOpTensorDescriptor_t points_desc,
-    const mluOpTensorDescriptor_t voxel_size_desc,
-    const mluOpTensorDescriptor_t coors_range_desc, const int32_t max_points,
-    const int32_t max_voxels, const int32_t NDim, const bool deterministic,
-    const mluOpTensorDescriptor_t voxels_desc,
-    const mluOpTensorDescriptor_t coors_desc,
-    const mluOpTensorDescriptor_t num_points_per_voxel_desc,
-    const mluOpTensorDescriptor_t voxel_num_desc, size_t *size);
+mluOpStatus_t MLUOP_WIN_API
+mluOpGetVoxelizationWorkspaceSize(mluOpHandle_t handle,
+                                  const mluOpTensorDescriptor_t points_desc,
+                                  const mluOpTensorDescriptor_t voxel_size_desc,
+                                  const mluOpTensorDescriptor_t coors_range_desc,
+                                  const int32_t max_points,
+                                  const int32_t max_voxels,
+                                  const int32_t NDim,
+                                  const bool deterministic,
+                                  const mluOpTensorDescriptor_t voxels_desc,
+                                  const mluOpTensorDescriptor_t coors_desc,
+                                  const mluOpTensorDescriptor_t num_points_per_voxel_desc,
+                                  const mluOpTensorDescriptor_t voxel_num_desc,
+                                  size_t *size);
 
 // Group:Voxelization
 /*!
@@ -3084,17 +3103,28 @@ mluOpStatus_t MLUOP_WIN_API mluOpGetVoxelizationWorkspaceSize(
  * - https://github.com/open-mmlab/mmcv/blob/master/mmcv/ops/voxelize.py
  */
 
-mluOpStatus_t MLUOP_WIN_API mluOpVoxelization(
-    mluOpHandle_t handle, const mluOpTensorDescriptor_t points_desc,
-    const void *points, const mluOpTensorDescriptor_t voxel_size_desc,
-    const void *voxel_size, const mluOpTensorDescriptor_t coors_range_desc,
-    const void *coors_range, const int32_t max_points, const int32_t max_voxels,
-    const int32_t NDim, const bool deterministic, void *workspace,
-    size_t workspace_size, const mluOpTensorDescriptor_t voxels_desc,
-    void *voxels, const mluOpTensorDescriptor_t coors_desc, void *coors,
-    const mluOpTensorDescriptor_t num_points_per_voxel_desc,
-    void *num_points_per_voxel, const mluOpTensorDescriptor_t voxel_num_desc,
-    void *voxel_num);
+mluOpStatus_t MLUOP_WIN_API
+mluOpVoxelization(mluOpHandle_t handle,
+                  const mluOpTensorDescriptor_t points_desc,
+                  const void *points,
+                  const mluOpTensorDescriptor_t voxel_size_desc,
+                  const void *voxel_size,
+                  const mluOpTensorDescriptor_t coors_range_desc,
+                  const void *coors_range,
+                  const int32_t max_points,
+                  const int32_t max_voxels,
+                  const int32_t NDim,
+                  const bool deterministic,
+                  void *workspace,
+                  size_t workspace_size,
+                  const mluOpTensorDescriptor_t voxels_desc,
+                  void *voxels,
+                  const mluOpTensorDescriptor_t coors_desc,
+                  void *coors,
+                  const mluOpTensorDescriptor_t num_points_per_voxel_desc,
+                  void *num_points_per_voxel,
+                  const mluOpTensorDescriptor_t voxel_num_desc,
+                  void *voxel_num);
 
 // Group:YoloBox
 /*!
@@ -3253,8 +3283,8 @@ mluOpYoloBox(mluOpHandle_t handle,
  *   - pos_memo tensor: int.
  *
  * @par Data Layout
- *  - The supported data layouts of \b geom_xyz, \b input_features, \b output_features and \b pos_memo are
- *    as follows:
+ *  - The supported data layouts of \b geom_xyz, \b input_features, \b output_features and \b
+ * pos_memo are as follows:
  *
  *   - Input tensor:
  *     - geom_xyz tensor: \p MLUOP_LAYOUT_ARRAY.
@@ -3268,9 +3298,11 @@ mluOpYoloBox(mluOpHandle_t handle,
  *  - The output_features tensor must be 4D.
  *  - The shape of \b geom_xyz should be [batch_size, num_points, 3].
  *  - The shape of \b input_features should be [batch_size, num_points, num_channels].
- *  - The shape of \b output_features should be [batch_size, num_voxel_y, num_voxel_x, num_channels].
+ *  - The shape of \b output_features should be [batch_size, num_voxel_y, num_voxel_x,
+ * num_channels].
  *  - The shape of \b pos_memo should be [batch_size, num_points, 3].
- *  - The \b batch_size, \b num_points, \b num_channels, \b num_voxel_x and \b num_voxel_y should be larger than zero.
+ *  - The \b batch_size, \b num_points, \b num_channels, \b num_voxel_x and \b num_voxel_y should be
+ * larger than zero.
  *
  *  @par Requirements
  *  - None.
@@ -3280,26 +3312,29 @@ mluOpYoloBox(mluOpHandle_t handle,
  *
  *  @par Note
  *  - The operator does not support MLU200 series.
- *  - You need to set the initial value for the output \b pos_memo before calling the operator, and initialize it to a negative number.
+ *  - You need to set the initial value for the output \b pos_memo before calling the operator, and
+ * initialize it to a negative number.
  *
  * @par Reference
- * - https://github.com/Megvii-BaseDetection/BEVDepth/blob/main/bevdepth/ops/voxel_pooling/src/voxel_pooling_forward_cuda.cu
+ * -
+ * https://github.com/Megvii-BaseDetection/BEVDepth/blob/main/bevdepth/ops/voxel_pooling/src/voxel_pooling_forward_cuda.cu
  */
-mluOpStatus_t MLUOP_WIN_API mluOpVoxelPoolingForward(mluOpHandle_t handle,
-                                                     const int batch_size,
-                                                     const int num_points,
-                                                     const int num_channels,
-                                                     const int num_voxel_x,
-                                                     const int num_voxel_y,
-                                                     const int num_voxel_z,
-                                                     const mluOpTensorDescriptor_t geom_xyz_desc,
-                                                     const void *geom_xyz,
-                                                     const mluOpTensorDescriptor_t input_features_desc,
-                                                     const void *input_features,
-                                                     const mluOpTensorDescriptor_t output_features_desc,
-                                                     void *output_features,
-                                                     const mluOpTensorDescriptor_t pos_memo_desc,
-                                                     void *pos_memo);
+mluOpStatus_t MLUOP_WIN_API
+mluOpVoxelPoolingForward(mluOpHandle_t handle,
+                         const int batch_size,
+                         const int num_points,
+                         const int num_channels,
+                         const int num_voxel_x,
+                         const int num_voxel_y,
+                         const int num_voxel_z,
+                         const mluOpTensorDescriptor_t geom_xyz_desc,
+                         const void *geom_xyz,
+                         const mluOpTensorDescriptor_t input_features_desc,
+                         const void *input_features,
+                         const mluOpTensorDescriptor_t output_features_desc,
+                         void *output_features,
+                         const mluOpTensorDescriptor_t pos_memo_desc,
+                         void *pos_memo);
 
 // Group:BoxIouRotated
 /*!
@@ -3570,11 +3605,16 @@ mluOpThreeInterpolateForward(mluOpHandle_t handle,
  * @par Reference
  * - https://github.com/open-mmlab/mmcv/blob/master/mmcv/ops/three_interpolate.py
  */
-mluOpStatus_t MLUOP_WIN_API mluOpThreeInterpolateBackward(
-    mluOpHandle_t handle, const mluOpTensorDescriptor_t grad_output_desc,
-    const void *grad_output, const mluOpTensorDescriptor_t indices_desc, const void *indices,
-    const mluOpTensorDescriptor_t weights_desc, const void *weights,
-    const mluOpTensorDescriptor_t grad_features_desc, void *grad_features);
+mluOpStatus_t MLUOP_WIN_API
+mluOpThreeInterpolateBackward(mluOpHandle_t handle,
+                              const mluOpTensorDescriptor_t grad_output_desc,
+                              const void *grad_output,
+                              const mluOpTensorDescriptor_t indices_desc,
+                              const void *indices,
+                              const mluOpTensorDescriptor_t weights_desc,
+                              const void *weights,
+                              const mluOpTensorDescriptor_t grad_features_desc,
+                              void *grad_features);
 
 // Group:Ballquery
 /*!
@@ -3855,9 +3895,12 @@ mluOpExpand(mluOpHandle_t handle,
  * - https://github.com/pytorch/pytorch/blob/master/aten/src/ATen/native/Fill.cpp
  *
  */
-mluOpStatus_t MLUOP_WIN_API mluOpFill(
-    mluOpHandle_t handle, const mluOpPointerMode_t pointer_mode,
-    const void *value, const mluOpTensorDescriptor_t output_desc, void *output);
+mluOpStatus_t MLUOP_WIN_API
+mluOpFill(mluOpHandle_t handle,
+          const mluOpPointerMode_t pointer_mode,
+          const void *value,
+          const mluOpTensorDescriptor_t output_desc,
+          void *output);
 
 // Group:Psamask
 /*!
@@ -3973,7 +4016,7 @@ mluOpPsamaskForward(mluOpHandle_t handle,
  * - See "Psamask Operator" section in "Cambricon BANGC OPS User Guide" for details.
  *
  * @par Data Type
-* - The supported data types of input tensor \b x and output tensor \b y are as follows
+ * - The supported data types of input tensor \b x and output tensor \b y are as follows
  *   - dy: float.
  *   - dx: float.
  *
