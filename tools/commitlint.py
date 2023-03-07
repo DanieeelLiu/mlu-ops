@@ -25,7 +25,7 @@
 import sys
 import re
 
-types = ('[Feature]', '[Fix]', '[Docs]', '[WIP]')
+types = ('[Feature]', '[Fix]', '[Docs]', '[TEST]', '[WIP]')
 scopes = ('(bangc-ops)', '(bangpy-ops)','(mlu-ops)')
 
 #get header
