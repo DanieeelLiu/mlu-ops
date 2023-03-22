@@ -86,14 +86,7 @@ mluOpStatus_t RoiCropForwardParamCheck(
                << " Check failed: grid_desc->dims[3] should be equal to 2.";
     return MLUOP_STATUS_BAD_PARAM;
   }
-  const size_t max_input_num = 2147483648;  // 2^31, 2G num
-  if ((mluOpGetTensorElementNum(input_desc) >= max_input_num) ||
-      (mluOpGetTensorElementNum(grid_desc) >= max_input_num) ||
-      (mluOpGetTensorElementNum(output_desc) >= max_input_num)) {
-    LOG(ERROR) << op_name << " Overflow max tensor num."
-               << " Currently, MLU-OPS supports tensor num smaller than 2^31.";
-    return MLUOP_STATUS_NOT_SUPPORTED;
-  }
+
   // check zero element
   if ((mluOpGetTensorElementNum(input_desc) == 0) ||
       (mluOpGetTensorElementNum(grid_desc) == 0) ||
